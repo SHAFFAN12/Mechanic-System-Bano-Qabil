@@ -58,7 +58,7 @@ paths:
           name: avatar
           type: file
           description: User's avatar image.
-          required: true
+          # required: true
       responses:
         '200':
           description: User registration successful
