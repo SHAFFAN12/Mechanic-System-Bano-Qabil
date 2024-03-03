@@ -57,7 +57,8 @@ paths:
         - in: formData
           name: avatar
           type: file
-          description: User's avatar image.
+          format: base64
+          description: Base64 encoded string representing user's avatar image.
           # required: true
       responses:
         '200':
