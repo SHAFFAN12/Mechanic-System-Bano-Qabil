@@ -5,9 +5,9 @@ info:
   description: Swagger UI Docs for Project (Mechanic System)
 
   servers:
-    -url: "https://bewildered-leg-warmers-tuna.cyclic.app"
+    -url: "https://mechanic-system-backend-bano-qabil-mern.vercel.app"
     description: This is Local Server
-host: https://bewildered-leg-warmers-tuna.cyclic.app
+host: https://mechanic-system-backend-bano-qabil-mern.vercel.app/
 basePath: /
 schemes:
   - http
