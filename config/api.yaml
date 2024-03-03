@@ -5,7 +5,7 @@ info:
   description: Swagger UI Docs for Project (Mechanic System)
 
   servers:
-    -url: "http://localhost:5000/api-docs/"
+    -url: "https://bewildered-leg-warmers-tuna.cyclic.app/api-docs"
     description: This is Local Server
 host: localhost:5000
 basePath: /
