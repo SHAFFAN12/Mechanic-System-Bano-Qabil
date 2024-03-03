@@ -75,23 +75,23 @@ const userregister = async (req, res) => {
             return res.status(400).json({ msg: 'User already exists' });
         }
 
+        let avatarUrl = ''; // Initialize avatarUrl as an empty string
+
         // Check if avatar file is uploaded
-        // if (!req.files || !req.files.avatar) {
-        //     return res.status(400).json({ msg: 'Avatar image is required' });
-        // }
+        if (req.files && req.files.avatar) {
+            const avatarFile = req.files.avatar[0]; // Get the first file uploaded for the 'avatar' field
 
-        const avatarFile = req.files.avatar[0]; // Get the first file uploaded for the 'avatar' field
-
-        // Upload avatar to Cloudinary and get the URL
-        const cloudinaryResponse = await uploadOnCloudinary(avatarFile.path);
-        const avatarUrl = cloudinaryResponse.secure_url;
+            // Upload avatar to Cloudinary and get the URL
+            const cloudinaryResponse = await uploadOnCloudinary(avatarFile.path);
+            avatarUrl = cloudinaryResponse.secure_url;
+        }
 
         user = new User({
             userName,
             email,
             password,
             phoneNumber,
-            // avatar: avatarUrl // Assign the Cloudinary URL to the avatar field
+            avatar: avatarUrl // Assign the Cloudinary URL or an empty string to the avatar field
         });
 
         // Hash the password
@@ -109,11 +109,14 @@ const userregister = async (req, res) => {
         };
 
         jwt.sign(payload, process.env.secretkey, { expiresIn: '2hr' }, (err, token) => {
-            if (err) throw err;
+            if (err) {
+                console.error('JWT token generation error:', err);
+                return res.status(500).json({ msg: 'Failed to generate authentication token' });
+            }
             return res.json({ token });
         });
     } catch (err) {
-        console.error(err.message);
+        console.error('User registration error:', err);
         res.status(500).json({ msg: 'Server error' });
     }
 };
