@@ -76,9 +76,9 @@ const userregister = async (req, res) => {
         }
 
         // Check if avatar file is uploaded
-        if (!req.files || !req.files.avatar) {
-            return res.status(400).json({ msg: 'Avatar image is required' });
-        }
+        // if (!req.files || !req.files.avatar) {
+        //     return res.status(400).json({ msg: 'Avatar image is required' });
+        // }
 
         const avatarFile = req.files.avatar[0]; // Get the first file uploaded for the 'avatar' field
 
@@ -91,7 +91,7 @@ const userregister = async (req, res) => {
             email,
             password,
             phoneNumber,
-            avatar: avatarUrl // Assign the Cloudinary URL to the avatar field
+            // avatar: avatarUrl // Assign the Cloudinary URL to the avatar field
         });
 
         // Hash the password
