@@ -7,7 +7,7 @@ info:
   servers:
     -url: "https://bewildered-leg-warmers-tuna.cyclic.app/api-docs"
     description: This is Local Server
-host: localhost:5000
+host: https://bewildered-leg-warmers-tuna.cyclic.app/api-docs
 basePath: /
 schemes:
   - http
